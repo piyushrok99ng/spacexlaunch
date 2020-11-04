@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
 
+## Demmo 
+https://spacex-916cc.web.app/
+
+
 ## Project Setup
 1. Clone the project
 2. open same path of project in cmd and Run `npm install` that install all your project dependency.
