@@ -1,1 +1,97 @@
+<div  class="grid row">
+  
 
+<div class="col-25 ">
+<div class="launch_year" style="width: 100%;height: 100%;"> 
+  
+<div class="postsubhead">Filters</div>
+<form  [formGroup]="form">
+  <div style="text-align:center;">Launch Year</div>
+<div style="margin-right: 24%;margin-left: 24%;border-bottom: 1px solid black;margin-bottom: 20px;"></div>
+<div class="col-50 " *ngFor="let i of launchYear"> 
+<!-- {{i}} -->
+
+  <input class="enums" id="{{i}}" [value]='i' type="radio"  formControlName="launchyear" name="launchyear" >
+  <label (click)="filterClick(i);">{{i}}</label>
+ 
+</div>
+
+<div class="col-75 filterHead" >
+  Successful Launch
+  <div style="margin-right: 24%;margin-left: 24%;border-bottom: 1px solid black;margin-bottom: 20px;"></div>
+  <div class="col-50 " > 
+    <input class="enums" id="launchTrue" [value]='true' type="radio"  formControlName="launchyearsuccessful" name="launchyearsuccessful" >
+  <label (click)="filterLaunch(true);">True</label>
+  </div>
+  <div class="col-50 " > 
+    <input class="enums" id="launchFalse" [value]='false' type="radio"  formControlName="launchyearsuccessful" name="launchyearsuccessful" >
+    <label (click)="filterLaunch(false);">False</label>
+  </div>
+
+</div>
+
+<div class="col-75 " style="text-align: center;width: 100%;">
+  Successful Landing
+  <div style="margin-right: 24%;margin-left: 24%;border-bottom: 1px solid black;margin-bottom: 20px;"></div>
+  <div class="col-50 " > 
+    <input class="enums" id="landingTrue" [value]='true' type="radio"  formControlName="launchyearlanding" name="launchyearlanding" >
+  <label (click)="filterLanding(true);">True</label>
+  </div>
+  <div class="col-50 " > 
+    <input class="enums" id="landingFalse" [value]='false' type="radio"  formControlName="launchyearlanding" name="launchyearlanding" >
+    <label (click)="filterLanding(false);">False</label>
+  </div>
+
+</div>
+
+</form>
+</div>
+
+
+</div>
+
+
+
+<div class="grid col-75 launchPost">
+ 
+<div *ngFor="let i of posts;index as index">
+  <div class="" >
+    <div class="col-25" >
+      <div class="block gutter">
+        <div class="post-image">
+          <!-- onerror="this.src='./app/assets/placeholder.svg';" -->
+          <img [src]="i.links.mission_patch_small" default="./app/assets/placeholder.svg"    [alt]="i.links.mission_patch_small">
+        </div>
+      <div style="color: #565daf;font-weight: 600;margin-bottom: 15px;">{{i.mission_name}} #{{index + 1}}</div>
+      <div class="posthead">
+        <span class="postsubhead">Mission Ids: </span>
+        <span class="postsubheadcontent">{{i.mission_id}}</span>
+      </div>
+      <div class="posthead">
+        <span class="postsubhead">Launch Year: </span>
+        <span class="postsubheadcontent">{{i.launch_year}}</span>
+      </div>
+      <div class="posthead">
+        <span class="postsubhead">Successful Launch: </span>
+        <span class="postsubheadcontent"> {{i.launch_success}}</span>
+      </div>
+      <div class="posthead" *ngIf="i.launch_success">
+        <span class="postsubhead">Successful Landing: </span>
+        <span class="postsubheadcontent" *ngIf="i.rocket.first_stage.cores[0].land_success != null">{{i.rocket.first_stage.cores[0].land_success}}</span>
+        <span class="postsubheadcontent" *ngIf="i.rocket.first_stage.cores[0].land_success == null">NA</span>
+      </div>
+      </div>
+  </div>
+  </div>
+  
+</div>
+<div *ngIf="posts.length == 0">
+        <h1 style="text-align:center;margin-top:25%">
+          No Data Found
+        </h1>
+</div>
+
+  <div class="clear"></div>
+</div>
+
+</div>
